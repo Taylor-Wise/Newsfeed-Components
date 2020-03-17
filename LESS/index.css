@@ -76,6 +76,7 @@
 .article-open {
   height: 400px;
 }
+@import "../Menu/Menu.less";
 html,
 body {
   margin: 0;
