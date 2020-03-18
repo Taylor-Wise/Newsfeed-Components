@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: "Serial Killer Facts",
+    date: 'March 3rd, 2020',
+    firstParagraph: "Dr. Harold Shipman (1946–2004) is regarded as the most prolific serial killer in modern history, with over 250 murders ascribed to him. He was a British doctor who murdered his patients: the oldest was a 93-year-old woman, and the youngest was a 41-year-old man. He hung himself in his cell in 2004, a day before his 58th birthday.",
+
+    secondParagraph: "While many serial killers were abused or beaten as children, there are exceptions. Jeffrey Dahmer had an apparently normal upbringing, yet became one of the most horrible sex murderers in popular culture. His father wrote a book, A Father’s Story, which searches for explanations for his son’s deviance.",
+
+    thirdParagraph: "Although it is impossible to predict if a child will grow up to be a serial killer, the three warning signs of future psychopathic behavior are 1) animal torture, 2) prolonged bed-wetting, and 3) juvenile pyromania. Criminologists call these symptoms “The Triad. Information found at https://www.factretriever.com/serial-killer-facts"
   }
 ];
 
@@ -112,3 +121,46 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const createArticle = (title, date, p1, p2, p3) => {
+  const article = document.createElement("div")
+  const articleTitle = document.createElement("h2")
+  const articleDate = document.createElement("p")
+  const para1 = document.createElement("p")
+  const para2 = document.createElement("p")
+  const para3 = document.createElement("p")
+  const btn = document.createElement("span")
+
+  article.appendChild(articleTitle)
+  article.appendChild(articleDate)
+  article.appendChild(para1)
+  article.appendChild(para2)
+  article.appendChild(para3)
+  article.appendChild(btn)
+
+  article.classList.add("article")
+  articleDate.classList.add("date")
+  btn.classList.add("expandButton")
+
+  articleTitle.textContent = title
+  articleDate.textContent = date
+  para1.textContent = p1
+  para2.textContent = p2
+  para3.textContent = p3
+
+  const open = "\u25bc"
+  btn.textContent = open
+
+
+  btn.addEventListener("click", () => {
+    article.classList.toggle("article-open")
+  })
+
+  return article
+}
+
+const articles = document.querySelector(".articles")
+
+data.forEach(dataSet => {
+  articles.appendChild(createArticle(dataSet.title, dataSet.date, dataSet.firstParagraph, dataSet.secondParagraph, dataSet.thirdParagraph))
+})
